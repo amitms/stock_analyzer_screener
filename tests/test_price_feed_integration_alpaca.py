@@ -206,10 +206,10 @@ def make_prefixed_feed(tickers: list[str]) -> tuple[PriceFeed, redis_lib.Redis]:
     orig_bar  = PriceFeed._handle_bar
 
     def prefixed_tick(self, msg):
-        orig_tick(self, {**msg, "sym": f"{TEST_PREFIX}:{msg['sym']}"})
+        orig_tick(self, {**msg, "S": f"{TEST_PREFIX}:{msg['S']}"})
 
     def prefixed_bar(self, msg):
-        orig_bar(self, {**msg, "sym": f"{TEST_PREFIX}:{msg['sym']}"})
+        orig_bar(self, {**msg, "S": f"{TEST_PREFIX}:{msg['S']}"})
 
     feed._handle_tick = lambda msg: prefixed_tick(feed, msg)
     feed._handle_bar  = lambda msg: prefixed_bar(feed, msg)
@@ -414,7 +414,7 @@ class TestRedisReadWrite:
 
     def test_handle_tick_writes_price(self, real_redis):
         feed, r = make_prefixed_feed(["AAPL"])
-        feed._handle_tick({"ev":"T","sym":"AAPL","p":175.50,"s":100,
+        feed._handle_tick({"T":"t","S":"AAPL","p":175.50,"s":100,
                            "av":1_000_000,"t":int(time.time()*1000)})
         stored = r.hgetall(f"tick:{TEST_PREFIX}:AAPL")
         assert stored, "Nothing written to Redis"
@@ -422,9 +422,9 @@ class TestRedisReadWrite:
 
     def test_handle_bar_writes_close(self, real_redis):
         feed, r = make_prefixed_feed(["SPY"])
-        feed._handle_bar({"ev":"AM","sym":"SPY",
+        feed._handle_bar({"T":"b","S":"SPY",
                           "o":450.0,"h":455.0,"l":449.0,"c":452.0,
-                          "v":2_000_000,"vw":451.5,"z":12000,
+                          "v":2_000_000,"vw":451.5,"n":12000,
                           "s":int(time.time()*1000)})
         stored = r.hgetall(f"bar1m:{TEST_PREFIX}:SPY")
         assert stored
@@ -432,7 +432,7 @@ class TestRedisReadWrite:
 
     def test_tick_all_fields_present(self, real_redis):
         feed, r = make_prefixed_feed(["MSFT"])
-        feed._handle_tick({"ev":"T","sym":"MSFT","p":310.0,"s":50,
+        feed._handle_tick({"T":"t","S":"MSFT","p":310.0,"s":50,
                            "av":500_000,"t":int(time.time()*1000)})
         stored = r.hgetall(f"tick:{TEST_PREFIX}:MSFT")
         for field in ("price","size","volume","ts"):
@@ -440,9 +440,9 @@ class TestRedisReadWrite:
 
     def test_bar_all_fields_present(self, real_redis):
         feed, r = make_prefixed_feed(["QQQ"])
-        feed._handle_bar({"ev":"AM","sym":"QQQ",
+        feed._handle_bar({"T":"b","S":"QQQ",
                           "o":350.0,"h":355.0,"l":349.0,"c":352.0,
-                          "v":1_500_000,"vw":351.5,"z":9000,
+                          "v":1_500_000,"vw":351.5,"n":9000,
                           "s":int(time.time()*1000)})
         stored = r.hgetall(f"bar1m:{TEST_PREFIX}:QQQ")
         for field in ("o","h","l","c","v","vw","n","ts"):
@@ -450,23 +450,23 @@ class TestRedisReadWrite:
 
     def test_tick_ttl_is_86400(self, real_redis):
         feed, r = make_prefixed_feed(["AAPL"])
-        feed._handle_tick({"ev":"T","sym":"AAPL","p":100.0,"s":1,
+        feed._handle_tick({"T":"t","S":"AAPL","p":100.0,"s":1,
                            "av":1,"t":int(time.time()*1000)})
         ttl = r.ttl(f"tick:{TEST_PREFIX}:AAPL")
         assert 86390 <= ttl <= 86400, f"TTL={ttl}"
 
     def test_bar_ttl_is_86400(self, real_redis):
         feed, r = make_prefixed_feed(["SPY"])
-        feed._handle_bar({"ev":"AM","sym":"SPY","o":1.,"h":1.,"l":1.,
-                          "c":1.,"v":1,"vw":1.,"z":1,
+        feed._handle_bar({"T":"b","S":"SPY","o":1.,"h":1.,"l":1.,
+                          "c":1.,"v":1,"vw":1.,"n":1,
                           "s":int(time.time()*1000)})
         ttl = r.ttl(f"bar1m:{TEST_PREFIX}:SPY")
         assert 86390 <= ttl <= 86400, f"TTL={ttl}"
 
     def test_second_tick_overwrites_first(self, real_redis):
         feed, r = make_prefixed_feed(["AAPL"])
-        feed._handle_tick({"ev":"T","sym":"AAPL","p":100.0,"s":1,"av":1,"t":1})
-        feed._handle_tick({"ev":"T","sym":"AAPL","p":200.0,"s":2,"av":2,"t":2})
+        feed._handle_tick({"T":"t","S":"AAPL","p":100.0,"s":1,"av":1,"t":1})
+        feed._handle_tick({"T":"t","S":"AAPL","p":200.0,"s":2,"av":2,"t":2})
         assert float(r.hgetall(f"tick:{TEST_PREFIX}:AAPL")["price"]) == pytest.approx(200.0)
 
     def test_missing_ticker_returns_empty(self, real_redis):
@@ -517,7 +517,7 @@ class TestRedisReadWrite:
         feed, _ = make_prefixed_feed(["TSLA"])
         feed.on_tick = lambda ticker, payload: received.append((ticker, payload))
 
-        feed._handle_tick({"ev":"T","sym":"TSLA","p":242.0,"s":10,
+        feed._handle_tick({"T":"t","S":"TSLA","p":242.0,"s":10,
                            "av":800_000,"t":int(time.time()*1000)})
 
         assert len(received) == 1
