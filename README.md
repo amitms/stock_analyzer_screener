@@ -4,35 +4,35 @@ calculate and predict price breakout for next day by considering above metrics, 
 
 <img width="200" height="500" alt="realtime_stock_analysis_system" src="https://github.com/user-attachments/assets/84da62c1-4f0a-411b-b282-8a12973b38c2" />
 
-  ══════════════════════════════════════════════════════════════
-       LAYER 1 — DATA INGESTION
-  ═══════════════════════════════════════════════════════════════════
-  <!-- Price / OHLCV -->
-  <!-- Options flow -->
-  <!-- Dark pool / tape -->
-  <!-- Sentiment / news -->
-   <!-- Social row -->
- ══════════════════════════════════════════════════════════════
-       LAYER 2 — SIGNAL COMPUTATION ENGINE
-═══════════════════════════════════════════════════════════════════ 
-  <!-- Volume signals -->
-  <!-- Technical signals -->
-  <!-- Risk signals -->
-  <!-- Options signals -->
-  <!-- Catalyst signals -->
-  <!-- Market context -->
+═════════════════════════════
+LAYER 1 — DATA INGESTION
+═════════════════════════════
+Price / OHLCV 
+Options flow 
+Dark pool / tape 
+Sentiment / news 
+ Social row 
+═════════════════════════════
+LAYER 2 — SIGNAL COMPUTATION ENGINE
+═════════════════════════════ 
+Volume signals 
+Technical signals 
+Risk signals 
+Options signals 
+Catalyst signals 
+Market context 
 
-══════════════════════════════════════════════════════════════
-       LAYER 3 — AI SCORING & BREAKOUT PREDICTION
-═══════════════════════════════════════════════════════════════════ 
-    <!-- Composite scorer -->
-   <!-- ML breakout model -->
-   <!-- Short squeeze detector -->
-══════════════════════════════════════════════════════════════
+═════════════════════════════
+LAYER 3 — AI SCORING & BREAKOUT PREDICTION
+═════════════════════════════ 
+Composite scorer 
+ML breakout model 
+Short squeeze detector 
+═════════════════════════════
        LAYER 4 — OUTPUT
-═══════════════════════════════════════════════════════════════════ 
+═════════════════════════════ 
 
-══════════════════════════════════════════════════════════════
+═════════════════════════════
        LAYER 5 — Python stack
-═══════════════════════════════════════════════════════════════════ 
+═════════════════════════════ 
  
