@@ -8,13 +8,10 @@ calculate and predict price breakout for next day by considering above metrics, 
 LAYER 1 — DATA INGESTION
 <br>═════════════════════════════<br>
 Price / OHLCV  
-
 Options flow  
-
-Dark pool / tape  
-
-Sentiment / news  \
- Social row \
+Dark pool / tape 
+Sentiment / news 
+Social row 
 ═════════════════════════════<br>
 LAYER 2 — SIGNAL COMPUTATION ENGINE
 <br>═════════════════════════════<br>
