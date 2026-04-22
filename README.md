@@ -5,12 +5,14 @@ calculate and predict price breakout for next day by considering above metrics, 
 <img width="200" height="500" alt="realtime_stock_analysis_system" src="https://github.com/user-attachments/assets/84da62c1-4f0a-411b-b282-8a12973b38c2" />
 <br>
 ═════════════════════════════<br>
-LAYER 1 — DATA INGESTION  
-
+LAYER 1 — DATA INGESTION
 <br>═════════════════════════════<br>
-Price / OHLCV  \
-Options flow  \
-Dark pool / tape  \
+Price / OHLCV  
+
+Options flow  
+
+Dark pool / tape  
+
 Sentiment / news  \
  Social row \
 ═════════════════════════════<br>
