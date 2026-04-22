@@ -12,8 +12,6 @@ calculate and predict price breakout for next day by considering above metrics, 
     </marker>
   </defs>
 
-  <!-- ── Layer 0: Title ─────────────────────────────────────────── -->
-  <text x="340" y="26" text-anchor="middle" font-size="15" style="fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:auto">Real-time stock scanner — system architecture</text>
 
   <!-- ══════════════════════════════════════════════════════════════
        LAYER 1 — DATA INGESTION
