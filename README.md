@@ -6,7 +6,7 @@ calculate and predict price breakout for next day by considering above metrics, 
 <br>
 ═════════════════════════════<br>
 LAYER 1 — DATA INGESTION
-═════════════════════════════<br>
+<br>═════════════════════════════<br>
 Price / OHLCV 
 Options flow 
 Dark pool / tape 
@@ -14,7 +14,7 @@ Sentiment / news
  Social row 
 ═════════════════════════════<br>
 LAYER 2 — SIGNAL COMPUTATION ENGINE
-═════════════════════════════<br>
+<br>═════════════════════════════<br>
 Volume signals 
 Technical signals 
 Risk signals 
@@ -22,17 +22,17 @@ Options signals
 Catalyst signals 
 Market context 
 
-═════════════════════════════<br>
+<br>═════════════════════════════<br>
 LAYER 3 — AI SCORING & BREAKOUT PREDICTION
-═════════════════════════════ <br>
+<br>═════════════════════════════ <br>
 Composite scorer 
 ML breakout model 
 Short squeeze detector 
-═════════════════════════════<br>
+<br>═════════════════════════════<br>
        LAYER 4 — OUTPUT
-═════════════════════════════<br> 
+<br>═════════════════════════════<br> 
 
-═════════════════════════════<br>
+<br>═════════════════════════════<br>
        LAYER 5 — Python stack
-═════════════════════════════<br>
+<br>═════════════════════════════<br>
  
