@@ -3,15 +3,6 @@ calculates trending stock with optional filter of penny stock (under $5) , or ot
 calculate and predict price breakout for next day by considering above metrics, if needed using ai algorithms.
 
 <img width="104" height="150" alt="realtime_stock_analysis_system" src="https://github.com/user-attachments/assets/84da62c1-4f0a-411b-b282-8a12973b38c2" />
-<svg width="100%" viewBox="0 0 680 980" role="img" style="" xmlns="http://www.w3.org/2000/svg">
-  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Real-Time Stock Analysis System Architecture</title>
-  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Five-layer architecture: Data ingestion, Signal computation, AI scoring, Output, and Python stack</desc>
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-  </defs>
-
 
   <!-- ══════════════════════════════════════════════════════════════
        LAYER 1 — DATA INGESTION
