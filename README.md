@@ -35,4 +35,34 @@ Short squeeze detector <br>
 <br>═════════════════════════════<br>
        LAYER 5 — Python stack
 <br>═════════════════════════════<br>
- 
+
+ ## Project Structure
+
+```
+stock_scanner/
+├── .env.example           API key template
+├── requirements.txt       All Python dependencies
+├── scanner.py             Main entry point
+├── config/
+│   └── settings.py        Central config
+├── ingestion/
+│   ├── price_feed.py      Polygon WebSocket + yfinance
+│   ├── options_feed.py    Tradier + Unusual Whales
+│   ├── news_feed.py       Finnhub + Reddit PRAW
+│   └── short_data.py      Fintel + yfinance short data
+├── signals/
+│   ├── volume_signals.py  RVOL, technical indicators
+│   └── composite_signals.py Options, risk, catalyst, market
+├── ai/
+│   ├── composite_scorer.py Signal fusion
+│   ├── breakout_model.py  XGBoost breakout predictor
+│   └── squeeze_detector.py Squeeze + FinBERT NLP
+├── output/
+│   ├── alerts.py          Discord + SQLite
+│   ├── dashboard.py       Plotly Dash UI
+│   └── backtest.py        Strategy backtesting
+└── data/                  Auto-created: DB, CSVs, equity curves
+    models/                Auto-created: trained model files
+    logs/                  Auto-created: log files
+```
+
