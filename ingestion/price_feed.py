@@ -121,13 +121,22 @@ class PriceFeed:
 
     async def _connect(self):
         async with websockets.connect(WS_URL, ping_interval=20) as ws:
-				  
+			# step 1: handle initial connection response, check for successful socket connection	  
+            conn_resp = json.loads(await ws.recv())
+            if not any(r.get("T") == "success" and r.get("msg") == "connected" for r in conn_resp ):
+                raise ConnectionError(f"Initial Alpacav WebSocket connection failed: {conn_resp}")
+            logger.info(f"Alpaca successful WebSocket connection:{conn_resp}")
+
+            # step 2: send authentication payload
             await ws.send(json.dumps({"action": "auth", "key": _api.apca_api_key_id, "secret": _api.apca_api_secret}))
-            resp = json.loads(await ws.recv())
-            # if resp[0].get("status") != "auth_success":
-            if not any(r.get("status") == "authorized" for r in resp):
-                raise ConnectionError(f"Alpaca auth failed: {resp}")
-            logger.info("Alpaca WebSocket authenticated")
+
+            # step 3: Handle & validate authentication Response
+            auth_resp = json.loads(await ws.recv())
+            logger.info(f"Alpaca Authentication step payload :{auth_resp}")
+                        # validation for authentication
+            if not any(r.get("T") == "success" and r.get("msg") == "authenticated" for r in auth_resp ):
+                raise ConnectionError(f"Alpaca authentication failed: {auth_resp}")
+            logger.info("Alpaca WebSocket authenticated Successfully")
 
 			# Subscribe														
             # subs = ",".join(
