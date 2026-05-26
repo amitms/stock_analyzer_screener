@@ -31,8 +31,8 @@ Short squeeze detector <br>
 <br>═════════════════════════════<br>
        LAYER 4 — OUTPUT
 <br>═════════════════════════════<br> 
-dashboard
-backtest
+dashboard <br>
+backtest <br>
 <br>═════════════════════════════<br>
        LAYER 5 — Python stack
 <br>═════════════════════════════<br>
@@ -66,6 +66,18 @@ stock_scanner/
     models/                Auto-created: trained model files
     logs/                  Auto-created: log files
 ```
+### Redis intallation and run:
+from docker:
+docker ps
+docker run -d -p 6379:6379 redis
+test
+docker exec -it redis redis-cli ping
+
+Start Redis (if not running)
+redis-server
+
+fake redis in python script : pip install pytest pytest-asyncio fakeredis pandas
+
 ## Usage:
 Model train: 
 python -m ai.breakout_model train --tickers AAPL,TSLA,NVDA,AMD --lookback 365 --tune --trials 50  <br>
