@@ -65,4 +65,12 @@ stock_scanner/
     models/                Auto-created: trained model files
     logs/                  Auto-created: log files
 ```
-
+## Usage:
+Model train: 
+python -m ai.breakout_model train --tickers AAPL,TSLA,NVDA,AMD --lookback 365 --tune --trials 50  <br>
+backtest: python -m output.backtest --tickers AAPL,TSLA,NVDA,AMD,MARA --period 1y --top-n 3 --freq W  <br>
+python scanner.py <br>
+Dashboard run: python -m output.dashboard <br>
+http://127.0.0.1:8050 <br>
+http://192.168.1.69:8050 <br>
+<img width="938" height="466" alt="dashboard" src="https://github.com/user-attachments/assets/1de42cec-f6ae-4b48-9669-48b7408509ed" />
