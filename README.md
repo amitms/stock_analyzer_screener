@@ -31,7 +31,8 @@ Short squeeze detector <br>
 <br>═════════════════════════════<br>
        LAYER 4 — OUTPUT
 <br>═════════════════════════════<br> 
-
+dashboard <br>
+backtest <br>
 <br>═════════════════════════════<br>
        LAYER 5 — Python stack
 <br>═════════════════════════════<br>
@@ -65,4 +66,26 @@ stock_scanner/
     models/                Auto-created: trained model files
     logs/                  Auto-created: log files
 ```
+### Redis intallation and run:
+from docker:
+docker ps
+docker run -d -p 6379:6379 redis
+test
+docker exec -it redis redis-cli ping
 
+Start Redis (if not running)
+redis-server
+or docker run -d -p 6379:6379 redis
+
+fake redis in python script : pip install pytest pytest-asyncio fakeredis pandas
+
+## Usage:
+1. make sure docker / redis is running.
+2. Model train: 
+python -m ai.breakout_model train --tickers AAPL,TSLA,NVDA,AMD --lookback 365 --tune --trials 50  <br>
+backtest: python -m output.backtest --tickers AAPL,TSLA,NVDA,AMD,MARA --period 1y --top-n 3 --freq W  <br>
+3. python scanner.py <br>
+4. Dashboard run: python -m output.dashboard <br>
+http://127.0.0.1:8050 <br>
+http://192.168.1.69:8050 <br>
+<img width="938" height="466" alt="dashboard" src="https://github.com/user-attachments/assets/1de42cec-f6ae-4b48-9669-48b7408509ed" />
