@@ -41,6 +41,7 @@ class APIConfig:
 
     # Finnhub  (free tier: 60 calls/min, real-time news webhooks on paid)
     finnhub_api_key: str = field(default_factory=lambda: os.getenv("FINNHUB_API_KEY", ""))
+    finnhub_webhook_secret: str = field(default_factory=lambda: os.getenv("FINNHUB_WEBHOOK_SECRET", ""))
 
     # Benzinga  (real-time news; paid API)
     benzinga_api_key: str = field(default_factory=lambda: os.getenv("BENZINGA_API_KEY", ""))
