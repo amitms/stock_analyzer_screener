@@ -31,7 +31,8 @@ Short squeeze detector <br>
 <br>═════════════════════════════<br>
        LAYER 4 — OUTPUT
 <br>═════════════════════════════<br> 
-
+dashboard
+backtest
 <br>═════════════════════════════<br>
        LAYER 5 — Python stack
 <br>═════════════════════════════<br>
