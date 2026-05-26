@@ -28,10 +28,12 @@ import os
 		 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))																			   
 
-from config.settings import get_api_config, get_path_config
+from config.settings import get_api_config, get_path_config, get_scanner_config
 
 _api   = get_api_config()
 _paths = get_path_config()
+_cfg   = get_scanner_config()
+
 DB_PATH = _paths.data / "scan_results.db"
 
 _redis = redis.Redis(
@@ -311,8 +313,8 @@ if __name__ == "__main__":
     logger.info("Starting Dash dashboard on http://localhost:8050")
     app.run(debug=False, host="0.0.0.0", port=8050)
 	
-Main orchestrator - the top-level scanner loop that wires all layers together
-scanner.py
+# Main orchestrator - the top-level scanner loop that wires all layers together
+# scanner.py
 
 """
 scanner.py
@@ -338,7 +340,7 @@ Environment
   Copy .env.example to .env and fill in API keys before running.
 """
 
-from __future__ import annotations
+# from __future__ import annotations
 
 import argparse
 import asyncio
@@ -353,11 +355,6 @@ from loguru import logger
 import sys
 import os  
 		 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))																			   
-
-
-from config.settings import get_api_config, get_path_config, get_scanner_config
-
 # Layer 1 — ingestion
 from ingestion.price_feed import PriceFeed, fetch_bulk_quotes
 from ingestion.options_feed import TradierOptionsClient, UnusualWhalesFeed
