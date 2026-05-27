@@ -546,21 +546,23 @@ class UnusualWhalesFeed:
 
     async def _connect(self):
         headers = {"Authorization": f"Bearer {_api.unusual_whales_token}"}
-        async with websockets.connect(UW_WS_URL, extra_headers=headers) as ws:
-            join_msg = {
-                "topic":   self.CHANNEL,
-                "event":   "phx_join",
-                "payload": {},
-                "ref":     "1",
-            }
-            await ws.send(json.dumps(join_msg))
-            logger.info("Unusual Whales WebSocket connected")
+        try:
+            async with websockets.connect(UW_WS_URL, additional_headers=headers, open_timeout=30 ) as ws:
+                join_msg = {
+                    "topic":   self.CHANNEL,
+                    "event":   "phx_join",
+                    "payload": {},
+                    "ref":     "1",
+                }
+                await ws.send(json.dumps(join_msg))
+                logger.info("Unusual Whales WebSocket connected")
 
-            async for raw in ws:
-                msg = json.loads(raw)
-                if msg.get("event") == "new_alert":
-                    self._handle_alert(msg.get("payload", {}))
-
+                async for raw in ws:
+                    msg = json.loads(raw)
+                    if msg.get("event") == "new_alert":
+                        self._handle_alert(msg.get("payload", {}))
+        except asyncio.TimeoutError:
+                print("Handshake timed out again.")
     def _handle_alert(self, payload: dict):
         alert_type = payload.get("type", "")
         ticker     = payload.get("ticker", "").upper()
