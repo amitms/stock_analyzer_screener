@@ -78,6 +78,7 @@ redis-server
 or docker run -d -p 6379:6379 redis
 
 fake redis in python script : pip install pytest pytest-asyncio fakeredis pandas
+<img width="407" height="494" alt="redis_server" src="https://github.com/user-attachments/assets/c1ae3e90-bd95-4afb-af96-ab6cf12b9a2c" />
 
 ## Usage:
 1. make sure docker / redis is running.
