@@ -80,6 +80,10 @@ or docker run -d -p 6379:6379 redis
 fake redis in python script : pip install pytest pytest-asyncio fakeredis pandas
 <img width="407" height="494" alt="redis_server" src="https://github.com/user-attachments/assets/c1ae3e90-bd95-4afb-af96-ab6cf12b9a2c" />
 
+### sqlite db sample
+./data/scan_results.db
+<img width="328" height="394" alt="sqlite3_scan_results_db" src="https://github.com/user-attachments/assets/3122caf3-7955-42c7-8970-636641f4a94f" />
+
 ## Usage:
 1. make sure docker / redis is running.
 2. Model train: 
